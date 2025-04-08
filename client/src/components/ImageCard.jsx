@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Avatar } from '@mui/material';
+import { DownloadRounded } from '@mui/icons-material';
+import FileSaver from 'file-saver';
 
 const Card = styled.div`
   position:relative;
@@ -29,11 +31,14 @@ const HoverOverlay = styled.div`
     display:flex;
     flex-direction:column;
     align-items:start;
-    gap:2px;
+    gap:10px;
     backdrop-filter:blur(2px);
     background:rgba(0, 0, 0, 0.5);
     color:${({theme}) => theme.white};
     transition:opacity 0.3s ease;
+    border-radius:6px;
+    justify-content:end;
+    padding:16px;
 
     ${Card}:hover & {
         opacity:1;
@@ -56,18 +61,30 @@ const Author = styled.div`
 `;
 
 
-const ImageCard = () => {
+const ImageCard = ({item}) => {
   return (
     <Card>
         <LazyLoadImage
+         alt={item?.prompt}
+         style={{borderRadius:"12px"}}
          width="100%"
-         src="https://static.freeimages.com/images/home/blurbs/visuals.webp"/>
+         src={item?.photo}/>
         <HoverOverlay>
-          <Prompt>Demo Prompt</Prompt>
+          <Prompt>{item?.prompt}</Prompt>
+          <div
+            style={{
+              width:"100%",
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"space-between"
+            }}
+          >
           <Author>
-          <Avatar sx={{width:"32px", height:"32px"}}>D</Avatar>
-          Demo Author
+          <Avatar sx={{width:"32px", height:"32px"}}>{item?.author[0]}</Avatar>
+            {item?.author}
           </Author>
+          <DownloadRounded onClick={() => FileSaver.saveAs(item?.photo, "download.jpg")} />
+          </div>
         </HoverOverlay>
     </Card>
   )

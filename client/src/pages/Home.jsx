@@ -13,7 +13,7 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     gap:20px;
-    @media(max-width: 768) {
+    @media(max-width: 768px) {
       padding:6px 10px;
     }
 `;
@@ -25,7 +25,7 @@ const HeadLine = styled.div`
   display:flex;
   align-items:center;
   flex-direction:column;
-  @media (max-widt: 600) {
+  @media (max-width: 600px) {
     font-size:22px;
   }
 `
@@ -34,7 +34,7 @@ const Span = styled.div`
   font-size:38px;
   font-weight:800;
   color: ${({ theme }) => theme.secondary};
-  @media (max-widt: 600) {
+  @media (max-width: 600px) {
     font-size:20px;
   }
 `;
@@ -62,6 +62,11 @@ const CardWrapper = styled.div`
 `;
 
 const Home = () => {
+  const item = {
+    photo:"https://static.freeimages.com/images/home/blurbs/visuals.webp",
+    author:"Author Name",
+    prompt:"Prompt description..."
+  }
   return (
     <Container>
        <HeadLine>Explore popular posts in the community!
@@ -70,15 +75,18 @@ const Home = () => {
        <SearchBar />
        <Wrapper>
        <CardWrapper>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
-          <ImageCard/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
+          <ImageCard item={item}/>
        </CardWrapper>
        </Wrapper>
     </Container>
